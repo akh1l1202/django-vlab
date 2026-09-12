@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Git Repository Management for a Django Project" name="description" />
+    <meta content="Virtual Labs" name="author" />
+    <meta name="experiment-short-name" content="git-django-repo" />
+    <meta name="developer-institute" content="VLABS" />
+    <meta name="learning-unit" content="GIT REPOSITORY MANAGEMENT FOR A DJANGO PROJECT." />
+    <meta name="task-name" content="Aim" />
+    <meta name="msapplication-TileColor" content="#4076e0" />
+    <meta name="theme-color" content="#4076e0" />
+    <meta name="msapplication-navbutton-color" content="#4076e0" />
+    <title>Virtual Labs | Git Repository Management for a Django Project</title>
+    
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./assets/css/github-markdown.min.css" />
+    <link rel="stylesheet" href="./assets/css/vlabs-style.css" />
+    <link rel="stylesheet" href="./assets/css/toast.css" />
+    <link rel="stylesheet" href="./assets/katex_assets/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    
+    <script src="./assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.4rem; font-weight: 800; }
+      h3 { font-size: 1.2rem; font-weight: 800; }
+      .badge-obj {
+        display: inline-block;
+        background-color: #288ec8;
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-right: 8px;
+      }
+      .objective-card {
+        background-color: #f8f9fa;
+        border-left: 4px solid #4076e0;
+        padding: 16px 20px;
+        margin-bottom: 16px;
+        border-radius: 0 8px 8px 0;
+      }
+    </style>
+  </head>
+  <body class="p-0 container-fluid vlabs-page d-flex flex-column justify-content-between">
+    <header class="vlabs-header sticky-top bg-white">
+      <nav class="p-0 navbar navbar-light d-flex align-items-stretch">
+        <button class="navbar-toggler px-4" type="button" onclick="toggle()">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-center">
+          <a href="index.html" class="navbar-brand">
+            <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo" />
+          </a>
+        </div>
+        <div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center justify-content-end">
+          <div class="svc-rating-display">
+            <rating-display spreadsheetid="1x12nhpp0QvnsA6x-O1sV4IA9SAbfVsq_wiexWkutOmU" sheetname="Exp-Rating-Clean" columnname="Experiment Short Name" columnvalue="git-django-repo" imagesdirectory="https://virtual-labs.github.io/svc-rating/">
+            </rating-display>
+          </div>
+          <div class="svc-rating-submit">
+            <rating-submit title="Rate" this="" experiment="">
+            </rating-submit>
+          </div>
+          <bug-report id="bug-report" title="[BUG REPORT] Git Repository Management for a Django Project" page-type="text" context-info='{"organisation":"Virtual Labs","developer_institute":"VLABS","expname":"Git Repository Management for a Django Project","labname":"Software Engineering Lab","phase":"3-ext"}' checkbox-json='{"text":["Insufficient Content"],"video":["Insufficient Content"],"assessment":["Incorrect Options","Incorrect Answer","Incorrect Question"],"simulation":["Simulation Not Working","Incorrect Results/Observations","Insufficient/Incorrect Instructions"],"DEFAULT":["Page Not Loading","Content Not Visible","Incorrect Content"]}' button_style="border: none; color: #fff; background-color: #288ec8; text-align: center; font-size: 1.05rem; border-radius: 1em;padding: 0.6em 1.2em; margin: 0 10px" position="override" custom_button_class="v-button">
+          </bug-report>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid flex-fill d-flex flex-column vlabs-page-main">
+      <div class="row d-flex justify-content-between">
+        <div class="flex-column">
+          <div class="row py-4 px-4 breadcrumbs">
+            <a href="https://www.vlab.co.in/broad-area-computer-science-and-engineering">Computer Science and Engineering</a>
+            <span class="mx-2"><i aria-hidden="true" class="fa fa-angle-right"></i></span>
+            <a href="#">Software Engineering &amp; Web Development Lab</a>
+            <span class="mx-2"><i aria-hidden="true" class="fa fa-angle-right"></i></span>
+            <a href="index.html">Experiments</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row flex-grow-1 d-flex flex-nowrap flex-column flex-lg-row">
+        <!-- Mobile Sidebar Modal -->
+        <div class="modal fade popupmenu" id="popupMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  <a href="index.html" class="navbar-brand">
+                    <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo" />
+                  </a>
+                </h5>
+                <button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body nav-menu">
+                <div><div class="d-flex nav-menu-body"><a href="index.html" class="p-2 current-item">Aim</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="theory.html" class="p-2">Theory</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="pretest.html" class="p-2">Pretest</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="procedure.html" class="p-2">Procedure</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="simulation.html" class="p-2">Simulation</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="posttest.html" class="p-2">Posttest</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="references.html" class="p-2">References</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="contributors.html" class="p-2">Contributors</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="feedback.html" class="p-2">Feedback</a></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Sidebar -->
+        <div class="nav flex-column sidebar nav-menu flex-shrink-0 px-lg-4 align-items-center align-items-lg-start hidden d-none d-lg-flex" id="menu">
+          <div><div class="d-flex nav-menu-body"><a href="index.html" class="p-2 current-item">Aim</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="theory.html" class="p-2">Theory</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="pretest.html" class="p-2">Pretest</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="procedure.html" class="p-2">Procedure</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="simulation.html" class="p-2">Simulation</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="posttest.html" class="p-2">Posttest</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="references.html" class="p-2">References</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="contributors.html" class="p-2">Contributors</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="feedback.html" class="p-2">Feedback</a></div></div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="vlabs-page-content px-5 pb-4 flex-grow-1 markdown-body">
+          <div class="text-center fix-spacing">
+            <h2>Git Repository Management for a Django Project</h2>
+          </div>
+          
+          <h3 id="aim">Aim</h3>
+          <p>
+            To understand and implement professional source code version control workflows specifically tailored for a Python/Django web application using Git, including repository initialization, ignore rule formulation, migration file management, feature branching, and merge conflict resolution.
+          </p>
+
+          <h3 id="learning-objectives" class="mt-4">Learning Objectives</h3>
+          <p>After completing this virtual lab experiment, students will be able to:</p>
+          
+          <div class="objective-card">
+            <span class="badge-obj">LO 1</span>
+            <strong>Initialize &amp; Structure a Git Repository for Django:</strong> Set up a clean Git tracking environment for standard Django project layouts without tracking generated artifacts or virtual environments.
+          </div>
+
+          <div class="objective-card">
+            <span class="badge-obj">LO 2</span>
+            <strong>Formulate Production-Grade <code>.gitignore</code> Rules:</strong> Safeguard sensitive credentials (<code>.env</code>, <code>SECRET_KEY</code>), avoid local database corruption (<code>db.sqlite3</code>), eliminate binary virtual environments (<code>venv/</code>), and ignore bytecode (<code>__pycache__/</code>).
+          </div>
+
+          <div class="objective-card">
+            <span class="badge-obj">LO 3</span>
+            <strong>Manage Django Schema Migrations in Version Control:</strong> Understand why schema migration files are immutable historical records, how they relate to <code>models.py</code>, and how to avoid split migration heads across team members.
+          </div>
+
+          <div class="objective-card">
+            <span class="badge-obj">LO 4</span>
+            <strong>Implement Collaborative Branching (Git Flow):</strong> Create, switch, and maintain isolated feature branches (e.g., <code>feature/polls-app</code>) before merging them back into the main branch.
+          </div>
+
+          <div class="objective-card">
+            <span class="badge-obj">LO 5</span>
+            <strong>Diagnose &amp; Resolve Merge Conflicts:</strong> Identify standard Git conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>) in Django configuration files such as <code>mysite/urls.py</code> and <code>settings.py</code>, and resolve them cleanly.
+          </div>
+
+          <div class="objective-card">
+            <span class="badge-obj">LO 6</span>
+            <strong>Apply Semantic Commit Hygiene &amp; Tagging:</strong> Practice conventional commit conventions (<code>feat:</code>, <code>fix:</code>, <code>chore:</code>) and create annotated release tags (e.g., <code>v1.0.0</code>) for deployment readiness.
+          </div>
+        </div>
+
+        <div class="bug-report-mobile">
+          <bug-report id="bug-report" title="[BUG REPORT] Git Repository Management for a Django Project" page-type="text" context-info='{"organisation":"Virtual Labs","developer_institute":"VLABS","expname":"Git Repository Management for a Django Project","labname":"Software Engineering Lab","phase":"3-ext"}' position="override" button_style="position: fixed; bottom: 20px; right: 20px; z-index: 1; font-size: 0; padding: 25px; border-radius: 50%; border: none; background-color: #0fc0ff; filter: invert(1);"></bug-report>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-light pt-2 vlabs-footer d-flex flex-column">
+      <div class="row px-5 mx-0">
+        <div class="col d-flex flex-column">
+          <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Community Links</span>
+          <a href="https://www.sakshat.ac.in/" class="text-light">Sakshat Portal</a>
+          <a href="http://outreach.vlabs.ac.in/" class="text-light">Outreach Portal</a>
+          <a href="https://vlab.co.in/faq" class="text-light">FAQ: Virtual Labs</a>
+        </div>
+        <div class="col d-flex flex-column">
+          <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Contact Us</span>
+          <span>Phone: General Information: 011-26582050</span>
+          <span>Email: support@vlabs.ac.in</span>
+        </div>
+        <div class="col d-flex flex-column">
+          <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Follow Us</span>
+          <div class="social-links">
+            <a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #55acee;" href="https://twitter.com/TheVirtualLabs"><i class="fab fa-twitter"></i></a>
+            <a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #3b5998;" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/"><i class="fab fa-facebook"></i></a>
+            <a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #e52d27;" href="https://www.youtube.com/watch?v=asxRaOgk6a0"><i class="fab fa-youtube"></i></a>
+            <a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #2867B2;" href="https://in.linkedin.com/in/virtual-labs-008ba9136"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="m-0 py-2 text-center" style="font-family: 'Open Sans', sans-serif; background: #212121;">
+        <a class="text-primary font-weight-bold" href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
+        &amp;
+        <a class="text-primary font-weight-bold" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons (CC BY-NC-SA 4.0)</a>
+      </div>
+    </footer>
+
+    <script src="./assets/js/toggleSidebar.js"></script>
+    <script src="./assets/js/event-handler.js"></script>
+    <script type="module" src="https://cdn.vlabs.ac.in/bug-report/vlabs-bug-report.js"></script>
+    <script type="module" src="https://virtual-labs.github.io/svc-rating/index.js"></script>
+    <script type="module" src="https://virtual-labs.github.io/svc-rating/config.js"></script>
+    <script type="module" src="https://apis.google.com/js/api.js"></script>
+  </body>
+</html>

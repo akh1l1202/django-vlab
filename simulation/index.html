@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git &amp; Django Interactive Terminal Simulator</title>
+    <link rel="stylesheet" href="css/sim.css?v=3" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Top Simulator Bar -->
+    <div class="sim-navbar">
+      <div class="sim-title">
+        <i class="fa-brands fa-git-alt" style="color: #f05032; font-size: 1.3rem;"></i>
+        <div>
+          <span>Git for Django</span>
+          <span class="sim-subtitle">Interactive repository workflow</span>
+        </div>
+      </div>
+      <div class="sim-progress" aria-live="polite">
+        <span id="progress-text">0 of 7 steps complete</span>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+      </div>
+    </div>
+
+    <!-- Main Workspace -->
+    <div class="sim-workspace">
+      <!-- Left Column: Terminal Emulator -->
+      <div class="sim-terminal-col">
+        <div class="terminal-header">
+          <div class="terminal-controls">
+            <span class="control-red"></span>
+            <span class="control-yellow"></span>
+            <span class="control-green"></span>
+          </div>
+          <div>student@django-dev: ~/mysite (bash)</div>
+          <div><i class="fa fa-terminal"></i></div>
+        </div>
+
+        <div class="terminal-body" id="terminal-body">
+          <div class="terminal-line text-info">
+            <strong>Django 4.2 &amp; Git 2.40 Virtual Environment Ready.</strong>
+          </div>
+          <div class="terminal-line text-muted">
+            Type <code>help</code> to display available commands. Try starting with <code>git init</code>.
+          </div>
+          <div class="terminal-line" id="terminal-input-row">
+            <div class="terminal-input-container">
+              <span class="prompt-user">student@django-dev</span>:<span class="prompt-dir">~/mysite</span><span class="prompt-branch" id="prompt-branch-label"></span><span class="prompt-sign">$</span>
+              <input type="text" id="terminal-input" class="terminal-input" aria-label="Terminal command" placeholder="Type a command and press Enter" autocomplete="off" spellcheck="false" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Visual Dashboard -->
+      <div class="sim-visual-col">
+        <div class="next-step-card">
+          <div>
+            <span class="next-step-label">Next step</span>
+            <strong id="next-step-text">Initialize the Git repository</strong>
+          </div>
+          <button type="button" id="next-step-button" onclick="fillNextCommand()">
+            <i class="fa-solid fa-terminal"></i> Fill command
+          </button>
+        </div>
+
+        <!-- Live Commit Graph -->
+        <div class="dashboard-card">
+          <div class="card-header-custom">
+            <span><i class="fa-solid fa-code-branch" style="color: #3b82f6;"></i> Dynamic Git Commit Graph</span>
+            <span style="font-size: 0.75rem; color: #64748b; font-weight: normal;">Updates on each commit/merge</span>
+          </div>
+          <div id="git-graph-container"></div>
+        </div>
+
+        <!-- Working Tree & Staging State -->
+        <div class="dashboard-card">
+          <div class="card-header-custom">
+            <span><i class="fa-regular fa-folder-open" style="color: #f59e0b;"></i> Working Directory &amp; Staging State</span>
+          </div>
+          <div class="files-grid" id="files-grid"></div>
+        </div>
+
+        <!-- Task Checklist -->
+        <div class="dashboard-card" style="margin-bottom: 24px;">
+          <div class="card-header-custom">
+            <span><i class="fa-solid fa-list-check" style="color: #10b981;"></i> Guided Lab Checklist</span>
+          </div>
+          <div id="tasks-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/sim.js?v=2"></script>
+  </body>
+</html>

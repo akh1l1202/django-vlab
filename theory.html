@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Theory - Git Repository Management for a Django Project" name="description" />
+    <meta content="Virtual Labs" name="author" />
+    <meta name="experiment-short-name" content="git-django-repo" />
+    <meta name="developer-institute" content="VLABS" />
+    <meta name="learning-unit" content="GIT REPOSITORY MANAGEMENT FOR A DJANGO PROJECT." />
+    <meta name="task-name" content="Theory" />
+    <meta name="msapplication-TileColor" content="#4076e0" />
+    <meta name="theme-color" content="#4076e0" />
+    <meta name="msapplication-navbutton-color" content="#4076e0" />
+    <title>Theory | Git Repository Management for a Django Project</title>
+    
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./assets/css/github-markdown.min.css" />
+    <link rel="stylesheet" href="./assets/css/vlabs-style.css" />
+    <link rel="stylesheet" href="./assets/css/toast.css" />
+    <link rel="stylesheet" href="./assets/katex_assets/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    
+    <script src="./assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"></script>
+    <style>
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.4rem; font-weight: 800; }
+      .markdown-body h3 { font-size: 1.5em; font-weight: 600; color: #2c99ce; margin-top: 2rem; text-decoration: none; padding-bottom: 0.3em; border-bottom: 1px solid #eaecef; }
+      h4 { font-size: 1.1rem; font-weight: 700; color: #27496d; margin-top: 1.25rem; }
+      .callout-box {
+        background: #f0f7ff;
+        border-left: 5px solid #288ec8;
+        padding: 14px 18px;
+        margin: 16px 0;
+        border-radius: 0 6px 6px 0;
+      }
+      .danger-box {
+        background: #fff5f5;
+        border-left: 5px solid #e53e3e;
+        padding: 14px 18px;
+        margin: 16px 0;
+        border-radius: 0 6px 6px 0;
+      }
+      .three-trees-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        margin-top: 0.75rem;
+        overflow-x: auto;
+        padding: 0.25rem 0 0.5rem;
+      }
+      .flow-node {
+        flex: 0 0 auto;
+        padding: 0.45rem 0.65rem;
+        border: 1px solid #cbdcea;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #27496d;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.78rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .flow-node i {
+        margin-right: 0.35rem;
+        color: #2c99ce;
+      }
+      .flow-arrow {
+        flex: 0 0 55px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        white-space: nowrap;
+        color: #5f6b76;
+      }
+      .flow-label {
+        margin-bottom: 0.2rem;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.72rem;
+      }
+      .flow-arrow-symbol {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 0.45rem;
+      }
+      .flow-arrow-symbol::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 6px;
+        border-top: 1px solid #7b8792;
+      }
+      .flow-arrow-symbol::after {
+        content: "";
+        position: absolute;
+        top: calc(50% - 3px);
+        right: 2px;
+        width: 6px;
+        height: 6px;
+        border-top: 1px solid #7b8792;
+        border-right: 1px solid #7b8792;
+        transform: rotate(45deg);
+      }
+      .table-custom {
+        width: 100%;
+        margin: 16px 0;
+        border-collapse: collapse;
+      }
+      .table-custom th, .table-custom td {
+        border: 1px solid #e1e4e8;
+        padding: 8px 12px;
+      }
+      .table-custom th {
+        background-color: #f6f8fa;
+        font-weight: 700;
+      }
+      pre {
+        background-color: #f6f8fa !important;
+        color: #24292e !important;
+        border-radius: 6px;
+        padding: 12px 16px;
+      }
+      code {
+        font-family: 'Consolas', 'Courier New', monospace;
+      }
+    </style>
+  </head>
+  <body class="p-0 container-fluid vlabs-page d-flex flex-column justify-content-between">
+    <header class="vlabs-header sticky-top bg-white">
+      <nav class="p-0 navbar navbar-light d-flex align-items-stretch">
+        <button class="navbar-toggler px-4" type="button" onclick="toggle()">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex justify-content-center">
+          <a href="index.html" class="navbar-brand">
+            <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo" />
+          </a>
+        </div>
+        <div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center justify-content-end">
+          <div class="svc-rating-display">
+            <rating-display spreadsheetid="1x12nhpp0QvnsA6x-O1sV4IA9SAbfVsq_wiexWkutOmU" sheetname="Exp-Rating-Clean" columnname="Experiment Short Name" columnvalue="git-django-repo" imagesdirectory="https://virtual-labs.github.io/svc-rating/">
+            </rating-display>
+          </div>
+          <div class="svc-rating-submit">
+            <rating-submit title="Rate" this="" experiment="">
+            </rating-submit>
+          </div>
+          <bug-report id="bug-report" title="[BUG REPORT] Git Repository Management for a Django Project" page-type="text" context-info='{"organisation":"Virtual Labs","developer_institute":"VLABS","expname":"Git Repository Management for a Django Project","labname":"Software Engineering Lab","phase":"3-ext"}' button_style="border: none; color: #fff; background-color: #288ec8; text-align: center; font-size: 1.05rem; border-radius: 1em;padding: 0.6em 1.2em; margin: 0 10px" position="override" custom_button_class="v-button">
+          </bug-report>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid flex-fill d-flex flex-column vlabs-page-main">
+      <div class="row d-flex justify-content-between">
+        <div class="flex-column">
+          <div class="row py-4 px-4 breadcrumbs">
+            <a href="https://www.vlab.co.in/broad-area-computer-science-and-engineering">Computer Science and Engineering</a>
+            <span class="mx-2"><i aria-hidden="true" class="fa fa-angle-right"></i></span>
+            <a href="#">Software Engineering &amp; Web Development Lab</a>
+            <span class="mx-2"><i aria-hidden="true" class="fa fa-angle-right"></i></span>
+            <a href="index.html">Experiments</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row flex-grow-1 d-flex flex-nowrap flex-column flex-lg-row">
+        <!-- Mobile Sidebar Modal -->
+        <div class="modal fade popupmenu" id="popupMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  <a href="index.html" class="navbar-brand">
+                    <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo" />
+                  </a>
+                </h5>
+                <button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body nav-menu">
+                <div><div class="d-flex nav-menu-body"><a href="index.html" class="p-2">Aim</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="theory.html" class="p-2 current-item">Theory</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="pretest.html" class="p-2">Pretest</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="procedure.html" class="p-2">Procedure</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="simulation.html" class="p-2">Simulation</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="posttest.html" class="p-2">Posttest</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="references.html" class="p-2">References</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="contributors.html" class="p-2">Contributors</a></div></div>
+                <div><div class="d-flex nav-menu-body"><a href="feedback.html" class="p-2">Feedback</a></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Sidebar -->
+        <div class="nav flex-column sidebar nav-menu flex-shrink-0 px-lg-4 align-items-center align-items-lg-start hidden d-none d-lg-flex" id="menu">
+          <div><div class="d-flex nav-menu-body"><a href="index.html" class="p-2">Aim</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="theory.html" class="p-2 current-item">Theory</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="pretest.html" class="p-2">Pretest</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="procedure.html" class="p-2">Procedure</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="simulation.html" class="p-2">Simulation</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="posttest.html" class="p-2">Posttest</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="references.html" class="p-2">References</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="contributors.html" class="p-2">Contributors</a></div></div>
+          <div><div class="d-flex nav-menu-body"><a href="feedback.html" class="p-2">Feedback</a></div></div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="vlabs-page-content px-5 pb-4 flex-grow-1 markdown-body">
+          <div class="text-center fix-spacing">
+            <h2>Git Repository Management for a Django Project</h2>
+          </div>
+          
+          <h3 id="intro-vcs">Introduction to Version Control in Web Engineering</h3>
+          <p>
+            In modern full-stack software development, a <strong>Version Control System (VCS)</strong> is fundamental. Web applications built using <strong>Django</strong> (a high-level Python web framework) consist of application logic, database models, static assets, configuration settings, and database schema migrations.
+          </p>
+          <p>
+            Git is a distributed version control system that tracks changes in files across three local states before synchronization with remote platforms like GitHub or GitLab:
+          </p>
+          <ul>
+            <li><strong>Working Directory:</strong> The local sandbox on your filesystem where files are actively edited.</li>
+            <li><strong>Staging Area (Index):</strong> A temporary preparation zone formatted as a manifest of files to be packaged into the next snapshot.</li>
+            <li><strong>Git Repository (HEAD):</strong> The permanent database of cryptographically hashed (SHA-1) commit objects stored inside the hidden <code>.git/</code> directory.</li>
+          </ul>
+
+          <div class="callout-box">
+            <div class="three-trees-flow">
+              <span class="flow-node"><i class="fa fa-folder-open" aria-hidden="true"></i>Working Directory</span>
+              <span class="flow-arrow"><span class="flow-label">git add</span><span class="flow-arrow-symbol"></span></span>
+              <span class="flow-node"><i class="fa fa-tasks" aria-hidden="true"></i>Staging Area (Index)</span>
+              <span class="flow-arrow"><span class="flow-label">git commit</span><span class="flow-arrow-symbol"></span></span>
+              <span class="flow-node"><i class="fa fa-database" aria-hidden="true"></i>Local Repository (HEAD)</span>
+              <span class="flow-arrow"><span class="flow-label">git push</span><span class="flow-arrow-symbol"></span></span>
+              <span class="flow-node"><i class="fa fa-cloud-upload" aria-hidden="true"></i>Remote (origin/main)</span>
+            </div>
+          </div>
+
+          <h3 id="django-project-anatomy">Django Project Anatomy &amp; Version Control Boundaries</h3>
+          <p>
+            When you run <code>django-admin startproject mysite</code> and create an app with <code>python manage.py startapp core</code>, the file tree takes the following standard shape:
+          </p>
+          
+          <pre><code>mysite/
+├── manage.py                # Command-line utility (MUST TRACK)
+├── mysite/
+│   ├── __init__.py          # Package marker (MUST TRACK)
+│   ├── settings.py          # Project configuration (MUST TRACK - secrets abstracted)
+│   ├── urls.py              # Root URL routing declarations (MUST TRACK)
+│   ├── asgi.py &amp; wsgi.py     # Server gateway interfaces (MUST TRACK)
+├── core/
+│   ├── models.py            # Database schema definitions (MUST TRACK)
+│   ├── views.py             # HTTP request controllers (MUST TRACK)
+│   ├── urls.py              # App-level routing (MUST TRACK)
+│   └── migrations/          # Schema transition scripts (MUST TRACK)
+│       ├── __init__.py
+│       └── 0001_initial.py
+├── .env                     # Local secrets and API keys (DO NOT TRACK!)
+├── db.sqlite3               # Local test SQLite database (DO NOT TRACK!)
+├── venv/                    # Virtual environment binaries (DO NOT TRACK!)
+└── __pycache__/             # Compiled bytecode (DO NOT TRACK!)</code></pre>
+
+          <h3 id="never-commit">Critical Django Files and Directories to Exclude from Version Control</h3>
+          <p>Careless staging with <code>git add .</code> without an explicit <code>.gitignore</code> causes severe operational failures:</p>
+
+          <div class="danger-box">
+            <h4>1. SQLite Database: <code>db.sqlite3</code></h4>
+            <p>
+              SQLite is a file-based database. If committed:
+            </p>
+            <ul>
+              <li>Every single local test record, session token, or admin user created on your machine gets pushed to teammates.</li>
+              <li>Git treats SQLite as a binary file. Any concurrent database writes result in unresolvable binary merge conflicts and repository database corruption.</li>
+              <li>Production databases must always be external services (PostgreSQL, MySQL), provisioned via environment variables, not checked-in SQLite binaries.</li>
+            </ul>
+          </div>
+
+          <div class="danger-box">
+            <h4>2. Secrets &amp; Environment Files: <code>.env</code></h4>
+            <p>
+              The Django <code>SECRET_KEY</code> cryptographic salt, database credentials, AWS keys, and payment gateway tokens must <strong>never</strong> enter version control history. Committing a secret permanently persists it in the Git log tree, exposing it to anyone with repository read access even if deleted in a later commit.
+            </p>
+          </div>
+
+          <div class="danger-box">
+            <h4>3. Compiled Bytecode: <code>__pycache__/</code> and <code>*.pyc</code></h4>
+            <p>
+              Python compiles <code>.py</code> source code into bytecode files (<code>.pyc</code>) for runtime execution speed. These are machine-specific and Python version-specific. Committing bytecode causes phantom bugs where stale compiled files override new source edits.
+            </p>
+          </div>
+
+          <div class="danger-box">
+            <h4>4. Python Virtual Environments: <code>venv/</code>, <code>.venv/</code>, <code>env/</code></h4>
+            <p>
+              Virtual environments contain thousands of compiled C-extensions, symlinks, and OS-specific executable binaries. Committing <code>venv/</code> inflates the repository size by hundreds of megabytes and fails on teammates' machines running different OS kernels. Instead, dependencies must be documented in a text manifest: <code>pip freeze &gt; requirements.txt</code>.
+            </p>
+          </div>
+
+          <div class="danger-box">
+            <h4>5. Media &amp; Collected Static Files: <code>media/</code> and <code>staticfiles/</code></h4>
+            <p>
+              <code>media/</code> holds user-uploaded content (profile avatars, documents) that belong in cloud object storage (e.g., AWS S3). <code>staticfiles/</code> is generated during deployment by <code>python manage.py collectstatic</code> and represents a transient build artifact.
+            </p>
+          </div>
+
+          <h3 id="gitignore-anatomy">Authoring a Production-Grade Django <code>.gitignore</code></h3>
+          <p>
+            A <code>.gitignore</code> file placed at the project root instructs Git which untracked files to intentionally ignore:
+          </p>
+
+          <pre><code># ==========================================
+# Production-Grade .gitignore for Django
+# ==========================================
+
+# 1. Bytecode &amp; Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 2. Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# 3. Local Secrets &amp; Configuration
+.env
+*.env
+local_settings.py
+
+# 4. Database &amp; Local Persistence
+*.sqlite3
+db.sqlite3
+*.db
+
+# 5. Media &amp; Collected Static Output
+media/
+staticfiles/
+
+# 6. IDEs &amp; OS Metadata
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db</code></pre>
+
+          <h3 id="migrations-vcs">Django Database Migrations in Version Control</h3>
+          <p>
+            A common point of confusion is whether to commit files inside <code>migrations/</code> directories.
+          </p>
+          <div class="callout-box">
+            <strong>Rule:</strong> You <strong>MUST</strong> track Django migration files (e.g., <code>0001_initial.py</code>, <code>0002_add_status_field.py</code>).
+          </div>
+          <p>
+            Django migrations are Python source files that describe incremental, linear transformations of your database schema. Without them:
+          </p>
+          <ul>
+            <li>Teammates pulling your code cannot run <code>python manage.py migrate</code> to construct the tables required by your new models.</li>
+            <li>Continuous Integration (CI/CD) pipelines and production servers will fail to deploy.</li>
+          </ul>
+
+          <h4>The Split Migration Problem &amp; Resolution</h4>
+          <p>
+            When Developer A creates migration <code>0002_add_bio.py</code> on branch <code>feature-user</code> and Developer B creates migration <code>0002_add_avatar.py</code> on branch <code>feature-profile</code>, merging their branches creates two migration nodes with the same predecessor.
+          </p>
+          <p>
+            Django detects this split dependency graph. The solution is running:
+          </p>
+          <pre><code>python manage.py makemigrations --merge</code></pre>
+          <p>This generates a clean merge migration file (e.g., <code>0003_merge_*.py</code>) that unifies the branch heads.</p>
+
+          <h3 id="branching-strategies">Collaborative Branching Workflows (Git Flow)</h3>
+          <p>
+            In production teams, developers never push untested code directly to the primary branch. The standard lifecycle follows:
+          </p>
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>Branch</th>
+                <th>Purpose</th>
+                <th>Protection Rules</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>main</code> / <code>master</code></td>
+                <td>Production-ready code matching live deployment.</td>
+                <td>Protected. Requires approved pull requests and passing CI.</td>
+              </tr>
+              <tr>
+                <td><code>develop</code></td>
+                <td>Integration branch where features accumulate prior to release.</td>
+                <td>Internal testing &amp; staging deployments.</td>
+              </tr>
+              <tr>
+                <td><code>feature/&lt;name&gt;</code></td>
+                <td>Isolated branch created for a single feature or story.</td>
+                <td>Branch off <code>develop</code>, deleted after merge.</td>
+              </tr>
+              <tr>
+                <td><code>hotfix/&lt;name&gt;</code></td>
+                <td>Urgent patches applied directly to production.</td>
+                <td>Merged into both <code>main</code> and <code>develop</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="merge-conflicts">Merge Conflicts Anatomy and Resolution</h3>
+          <p>
+            A <strong>merge conflict</strong> occurs when two branches modify the exact same line in a file in conflicting ways, or one branch deletes a file while another modifies it. Git pauses the merge and annotates the conflicting file with conflict markers:
+          </p>
+
+          <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD (Current Branch: main)
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/v1/auth/', include('authentication.urls')),
+]
+=======
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/v1/polls/', include('polls.urls')),
+]
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/polls (Incoming Branch)</code></pre>
+
+          <h4>Three-Step Resolution:</h4>
+          <ol>
+            <li><strong>Inspect &amp; Decide:</strong> Open the file and determine what the integrated logic should look like (in this case, both URL routes are needed).</li>
+            <li><strong>Remove Markers:</strong> Manually delete the <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> lines and preserve the desired code:
+              <pre><code>urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/v1/auth/', include('authentication.urls')),
+    path('api/v1/polls/', include('polls.urls')),
+]</code></pre>
+            </li>
+            <li><strong>Stage &amp; Commit:</strong> Run <code>git add mysite/urls.py</code> followed by <code>git commit -m "chore: resolve URL routing merge conflict"</code>.</li>
+          </ol>
+
+          <h3 id="commands-cheatsheet">Essential Git Commands Reference</h3>
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Operational Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>git init</code></td>
+                <td>Initializes a new empty Git repository inside the current directory (creates <code>.git/</code>).</td>
+              </tr>
+              <tr>
+                <td><code>git status</code></td>
+                <td>Displays the working directory state: untracked, modified, or staged files.</td>
+              </tr>
+              <tr>
+                <td><code>git add &lt;file&gt;</code> / <code>git add .</code></td>
+                <td>Stages changes from the working tree into the Staging Index for the next commit snapshot.</td>
+              </tr>
+              <tr>
+                <td><code>git commit -m "message"</code></td>
+                <td>Records staged snapshots permanently into the repository history with an explanatory message.</td>
+              </tr>
+              <tr>
+                <td><code>git branch</code></td>
+                <td>Lists local branches; asterisk (*) marks the currently active branch.</td>
+              </tr>
+              <tr>
+                <td><code>git checkout -b &lt;branch&gt;</code></td>
+                <td>Creates a new branch and immediately switches the HEAD pointer to it.</td>
+              </tr>
+              <tr>
+                <td><code>git merge &lt;branch&gt;</code></td>
+                <td>Combines changes from the target branch into the currently checked-out branch.</td>
+              </tr>
+              <tr>
+                <td><code>git log --oneline --graph</code></td>
+                <td>Displays the commit timeline as a visual ASCII graph with abbreviated SHA hashes.</td>
+              </tr>
+              <tr>
+                <td><code>git rm --cached &lt;file&gt;</code></td>
+                <td>Untracks a file from Git while preserving the physical file in your local workspace.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bug-report-mobile">
+          <bug-report id="bug-report" title="[BUG REPORT] Git Repository Management for a Django Project" page-type="text" context-info='{"organisation":"Virtual Labs","developer_institute":"VLABS","expname":"Git Repository Management for a Django Project","labname":"Software Engineering Lab","phase":"3-ext"}' position="override" button_style="position: fixed; bottom: 20px; right: 20px; z-index: 1; font-size: 0; padding: 25px; border-radius: 50%; border: none; background-color: #0fc0ff; filter: invert(1);"></bug-report>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-light pt-2 vlabs-footer d-flex flex-column">
+      <div class="row px-5 mx-0">
+        <div class="col d-flex flex-column">
+          <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Community Links</span>
+          <a href="https://www.sakshat.ac.in/" class="text-light">Sakshat Portal</a>
+          <a href="http://outreach.vlabs.ac.in/" class="text-light">Outreach Portal</a>
+          <a href="https://vlab.co.in/faq" class="text-light">FAQ: Virtual Labs</a>
+        </div>
+        <div class="col d-flex flex-column">
+          <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Contact Us</span>
+          <span>Phone: General Information: 011-26582050</span>
+          <span>Email: support@vlabs.ac.in</span>
+        </div>
+        <div class="col d-flex flex-column">
+          <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Follow Us</span>
+          <div class="social-links">
+            <a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #55acee;" href="https://twitter.com/TheVirtualLabs"><i class="fab fa-twitter"></i></a>
+            <a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #3b5998;" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/"><i class="fab fa-facebook"></i></a>
+            <a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #e52d27;" href="https://www.youtube.com/watch?v=asxRaOgk6a0"><i class="fab fa-youtube"></i></a>
+            <a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #2867B2;" href="https://in.linkedin.com/in/virtual-labs-008ba9136"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="m-0 py-2 text-center" style="font-family: 'Open Sans', sans-serif; background: #212121;">
+        <a class="text-primary font-weight-bold" href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPL 3.0</a>
+        &amp;
+        <a class="text-primary font-weight-bold" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons (CC BY-NC-SA 4.0)</a>
+      </div>
+    </footer>
+
+    <script src="./assets/js/toggleSidebar.js"></script>
+    <script src="./assets/js/event-handler.js"></script>
+    <script type="module" src="https://cdn.vlabs.ac.in/bug-report/vlabs-bug-report.js"></script>
+    <script type="module" src="https://virtual-labs.github.io/svc-rating/index.js"></script>
+    <script type="module" src="https://virtual-labs.github.io/svc-rating/config.js"></script>
+    <script type="module" src="https://apis.google.com/js/api.js"></script>
+  </body>
+</html>
