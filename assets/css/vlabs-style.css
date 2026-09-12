@@ -132,6 +132,19 @@ html {
   height: 2.5rem;
 }
 
+.header-brand-logos {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-brand-logos .institute-logo,
+.header-brand-logos .vlabs-logo {
+  width: auto;
+  height: 4rem;
+  object-fit: contain;
+}
+
 @media (max-width: 991px) {
   .sidebar {
     max-height: 6000px;
@@ -141,6 +154,15 @@ html {
   }
   .vlabs-logo {
     height: 3rem;
+  }
+
+  .header-brand-logos {
+    gap: 0.5rem;
+  }
+
+  .header-brand-logos .institute-logo,
+  .header-brand-logos .vlabs-logo {
+    height: 2.25rem;
   }
 
   .simulation-header {

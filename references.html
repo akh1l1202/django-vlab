@@ -33,19 +33,17 @@
       h1 { font-size: 1.8rem; }
       h2 { font-size: 1.4rem; font-weight: 800; }
       h3 { font-size: 1.25rem; font-weight: 800; color: #2c99ce; margin-top: 2rem; text-decoration: none; }
-      .ref-card {
-        background: transparent;
-        border: 0;
-        padding: 0;
-        margin-bottom: 1.5rem;
-        border-radius: 0;
+      .reference-heading {
+        color: #000;
       }
-      .ref-card a {
+      .reference-list {
+        color: #000;
+      }
+      .reference-list a {
         color: #0366d6;
-        font-weight: 600;
         text-decoration: none;
       }
-      .ref-card a:hover {
+      .reference-list a:hover {
         text-decoration: underline;
       }
     </style>
@@ -58,7 +56,7 @@
         </button>
         <div class="d-flex justify-content-center">
           <a href="index.html" class="navbar-brand">
-            <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo" />
+            <span class="header-brand-logos"><img src="./assets/images/logo1.svg" alt="Somaiya Vidyavihar University logo" class="institute-logo" /><img src="./assets/images/vlabs-color-small-moe.jpg" alt="Virtual Labs logo" class="vlabs-logo" /></span>
           </a>
         </div>
         <div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center justify-content-end">
@@ -136,37 +134,18 @@
             <h2>Git Repository Management for a Django Project</h2>
           </div>
           
-          <h3>Academic &amp; Official References</h3>
+          <h3 class="reference-heading">Book References:</h3>
+          <ul class="reference-list">
+            <li>Chacon, Scott, and Ben Straub. <em>Pro Git</em> (2nd Edition). Apress.</li>
+          </ul>
 
-          <div class="ref-card">
-            <strong>1. Django Software Foundation.</strong> "Migrations in Django." <em>Django Project Documentation</em>.<br />
-            <a href="https://docs.djangoproject.com/en/stable/topics/migrations/" target="_blank" rel="noopener noreferrer">https://docs.djangoproject.com/en/stable/topics/migrations/</a>
-            <p class="text-muted mt-1 mb-0">Covers migration workflows, linear history maintenance, and resolving split heads with <code>--merge</code>.</p>
-          </div>
-
-          <div class="ref-card">
-            <strong>2. Chacon, Scott, and Ben Straub.</strong> <em>Pro Git</em> (2nd Edition). Apress / Open Source.<br />
-            <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener noreferrer">https://git-scm.com/book/en/v2</a>
-            <p class="text-muted mt-1 mb-0">The authoritative textbook covering Git internals, the 3-tree model, branching mechanics, and resolving conflicts.</p>
-          </div>
-
-          <div class="ref-card">
-            <strong>3. GitHub Open Source Collection.</strong> "Official Gitignore Templates: Python &amp; Django."<br />
-            <a href="https://github.com/github/gitignore/blob/main/Python.gitignore" target="_blank" rel="noopener noreferrer">https://github.com/github/gitignore/blob/main/Python.gitignore</a>
-            <p class="text-muted mt-1 mb-0">Industry consensus on standard files to omit from version control in Python web frameworks.</p>
-          </div>
-
-          <div class="ref-card">
-            <strong>4. Wiggins, Adam.</strong> "The Twelve-Factor App: Configuration &amp; Backing Services."<br />
-            <a href="https://12factor.net/config" target="_blank" rel="noopener noreferrer">https://12factor.net/config</a>
-            <p class="text-muted mt-1 mb-0">Establishes the standard for storing secret keys and credentials strictly in environment variables rather than checking them into Git.</p>
-          </div>
-
-          <div class="ref-card">
-            <strong>5. Atlassian Git Tutorials.</strong> "Comparing Workflows: Git Flow vs. Feature Branch Workflows."<br />
-            <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" target="_blank" rel="noopener noreferrer">https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow</a>
-            <p class="text-muted mt-1 mb-0">In-depth guide for managing releases, hotfixes, and develop branches across engineering teams.</p>
-          </div>
+          <h3 class="reference-heading">Web References:</h3>
+          <ol class="reference-list">
+            <li><a href="https://docs.djangoproject.com/en/stable/topics/migrations/" target="_blank" rel="noopener noreferrer">Migrations in Django</a></li>
+            <li><a href="https://github.com/github/gitignore/blob/main/Python.gitignore" target="_blank" rel="noopener noreferrer">Official Gitignore Template for Python and Django</a></li>
+            <li><a href="https://12factor.net/config" target="_blank" rel="noopener noreferrer">The Twelve-Factor App: Configuration</a></li>
+            <li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" target="_blank" rel="noopener noreferrer">Gitflow Workflow</a></li>
+          </ol>
         </div>
 
         <div class="bug-report-mobile">
